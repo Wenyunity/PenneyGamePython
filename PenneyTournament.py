@@ -1,5 +1,4 @@
 from Penney import PenneyGameFixedLength as Penney
-from itertools import combinations as comb
 
 def PenneyTournament(length=3, rounds=1000, players=2):
     """Plays Penney's Game using all possible combinations
