@@ -42,3 +42,31 @@ def PenneyGame(A, B):
             winnerDetermined = True
             winner += 1
     return winner
+
+def PenneyGameFixedLength(playerList, length):
+    """ 
+    Plays a round of Penney's Game with the playerList given.
+    A coin is flipped multiple times until any sequence in playerList is given.
+
+    This version only supports sequences of the same length.
+    Sequences are defined by integers; the binary interpretation of the sequence
+    determines heads or tails.
+    
+    Returns the index of the player that won.
+    """
+    ## Number
+    flipNumber = 0
+
+    ## First length-1 flips (No possible winner)
+    flipNumber = rand.randint(0, (2**length)-1)
+
+    ## Flips with possible wins
+    while True:
+        ## Flip a coin and get rid of oldest flip
+        flipNumber = ((flipNumber * 2) + rand.choice([0, 1])) % (2**length)
+        ## Print sequence
+        ## print(format(flipNumber, "0>" + str(length) + "b"))
+        ## Check all coins for possible wins
+        for idx, val in enumerate(playerList):
+            if val == flipNumber:
+                return idx
